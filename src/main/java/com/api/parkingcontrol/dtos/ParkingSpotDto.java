@@ -3,6 +3,8 @@ package com.api.parkingcontrol.dtos;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
 
+// Aqui ficam guardados os campos que o usuário consegue postar.
+
 public class ParkingSpotDto {
     @NotBlank
     private String parkingSpotNumber;
