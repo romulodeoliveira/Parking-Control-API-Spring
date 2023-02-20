@@ -20,10 +20,15 @@ public class ParkingSpotService {
         this.parkingSpotRepository = parkingSpotRepository;
     }
 
-    @Transactional
+    // Método para POST
+
+    @Transactional // Usar quando muitos dados estiverem em uso (seja em POST ou DELETE) para
+                   // garantir que haja um roll back.
     public ParkingSpotModel save(ParkingSpotModel parkingSpotModel) {
         return parkingSpotRepository.save(parkingSpotModel);
     }
+
+    // Métodos para verificações
 
     public boolean existsByLicensePlateCar(String licensePlateCar) {
         return parkingSpotRepository.existsByLicensePlateCar(licensePlateCar);
@@ -37,11 +42,23 @@ public class ParkingSpotService {
         return parkingSpotRepository.existsByApartmentAndBlock(apartment, block);
     }
 
+    // Método para o GET ALL
+
     public List<ParkingSpotModel> findAll() {
         return parkingSpotRepository.findAll();
     }
 
+    // Método para o GET ONE
+
     public Optional<ParkingSpotModel> findById(UUID id) {
         return parkingSpotRepository.findById(id);
+    }
+
+    // Método para o DELETE
+
+    @Transactional // Usar quando muitos dados estiverem em uso (seja em POST ou DELETE) para
+                   // garantir que haja um roll back.
+    public void delete(ParkingSpotModel pakingSpotModel) {
+        parkingSpotRepository.delete(pakingSpotModel);
     }
 }
